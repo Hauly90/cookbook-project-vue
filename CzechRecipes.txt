@@ -1,0 +1,31 @@
+{
+ allRec = [
+{
+"name": "Svíčková na smetaně",
+"description": [
+	{
+	"Preheat the oven to 300F/150C."
+	},
+	{
+	"Poke the piece of meat, and insert the bacon in the holes. Season with salt and tie the meat with kitchen twine."
+	}
+]
+"finalAmount": "5",
+"preparationLength": "150 minut",
+"materials": [
+	{
+	"quantity" : "2",
+	"name" : "carrots"
+	},
+	{
+	"quantity" : "0.5",
+	"name" : "celeriac"
+	},
+	{
+	"quantity" : "2",
+	"name" : "turnips"
+	}
+],
+ }
+]
+}
