@@ -1,8 +1,5 @@
 <template>
   <div class="soupsList">
-
-    <p>{{ formDesc }}</p>
-
     <div class="allSoupsInfo" v-show="showAllInfo">
       <h2>{{ oneSoupName }}</h2>
 
@@ -121,11 +118,21 @@
       </div>
     </div>
 
-    <form v-if="showForm" class="card" style="width: 20rem">
-      <label for="desc" id="someDesc"> {{ oneSoupName }}</label>
-      <input type="text" id="desc" name="desc" v-model="formDesc" />
+    <form
+      v-show="showForm"
+      class="card"
+      style="width: 35rem"
+      @submit.prevent="onSubmit()"
+    >
 
-      
+      <label for="desc" id="someDesc">Step 1</label>
+      <textarea name="desc" rows="6" v-model="formDesc[0]"></textarea>
+
+      <label for="desc" id="someDesc">Step 2</label>
+      <textarea name="desc" rows="6" v-model="formDesc[1]"></textarea>
+
+      <label for="desc" id="someDesc">Step 3</label>
+      <textarea name="desc" rows="6" v-model="formDesc[2]"></textarea>
 
       <label for="name" id="someName">Name</label>
       <input type="text" id="name" name="name" v-model="formName" />
@@ -134,10 +141,35 @@
       <input type="text" id="number" name="number" v-model="formFinAmo" />
 
       <label for="prepLength" id="somePrepLength">Preparation length</label>
-      <input type="text" id="prepLength" name="prepLength" v-model="formPrepLeng" />
+      <input
+        type="text"
+        id="prepLength"
+        name="prepLength"
+        v-model="formPrepLeng"
+      />
+
+      <!-- <label for="material" id="somePrepLength">Ingredients</label>
+      <input
+        type="text"
+        id="quantity"
+        name="material"
+        v-model="formIngred[0].quantity"
+        placeholder="quantity"
+      />
+      <input type="text" id="type" name="material" v-model="formIngred[1].type" placeholder="material" />
+      <input
+        type="text"
+        id="nameOfIng"
+        name="material"
+        v-model="formIngred[2].nameOfIng"
+        placeholder="nameOfIng"
+      /> -->
 
       <button class="btn btn-outline-primary" @click="hideEditing()">
         Close X
+      </button>
+      <button class="btn btn-outline-primary" @click="fillData()">
+        Set to original values
       </button>
     </form>
   </div>
@@ -169,7 +201,7 @@ export default {
     oneSoupIndex: Number,
     showIcon: Boolean,
   },
-  
+
   methods: {
     showEditing() {
       this.showAllInfo = false;
@@ -182,7 +214,17 @@ export default {
     deleteItem() {
       this.$emit("deleteItem", this.oneSoupIndex);
     },
+    fillData() {
+      this.formName = this.oneSoupName;
+      this.formDesc = this.oneSoupDescription;
+      this.formFinAmo = this.oneSoupFinalAmount;
+      this.formPrepLeng = this.oneSoupPrepLength;
+      this.formIngred = this.oneSoupIngredients;
+    },
   },
+  // created() {
+  //   this.fillData();
+  // }
 };
 </script>
 
@@ -220,4 +262,15 @@ li {
 .bi-trash {
   margin: 0px 5px 8px 5px;
 }
+#desc {
+  height: 120px;
+  text-align: left-top;
+  max-width: 15rem;
+  text-decoration: line-through;
+  /* font-size: 14pt; */
+}
+form {
+  padding: 15px;
+}
+
 </style>
