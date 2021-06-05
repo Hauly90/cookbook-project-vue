@@ -72,6 +72,7 @@
         :showIcon="true"
         v-show="showIt"
         @deleteItem="deleteItem"
+        @changeData="changeData"
       />
     </div>
   </div>
@@ -122,6 +123,9 @@ export default {
       this.hideItem();
       this.$emit("deleteItem", index);
     },
+    changeData(index, formName, formDesc, formFinAmo, formPrepLeng) {
+        this.$emit("changeData", index, formName, formDesc, formFinAmo, formPrepLeng);
+    }
   },
 };
 </script>

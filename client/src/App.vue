@@ -15,6 +15,7 @@
       :listOfSoups="listOfSoups"
       v-show="isShowed"
       @deleteItem="deleteItem"
+      @changeData="changeData"
     />
   </div>
 </template>
@@ -33,7 +34,13 @@ export default {
     },
     deleteItem(index) {
       this.listOfSoups.splice(index, 1);
-    }
+    },
+    changeData(index, formName, formDesc, formFinAmo, formPrepLeng) {
+      this.listOfSoups[index].name = formName;
+      this.listOfSoups[index].description = formDesc;
+      this.listOfSoups[index].finalAmount = formFinAmo;
+      this.listOfSoups[index].preparationLength = formPrepLeng;
+    },
   },
   data() {
     return {

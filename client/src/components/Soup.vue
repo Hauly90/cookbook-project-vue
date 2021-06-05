@@ -124,7 +124,7 @@
       style="width: 35rem"
       @submit.prevent="onSubmit()"
     >
-
+      <!-- @submit.prevent="onSubmit()" -->
       <label for="desc" id="someDesc">Step 1</label>
       <textarea name="desc" rows="6" v-model="formDesc[0]"></textarea>
 
@@ -148,21 +148,33 @@
         v-model="formPrepLeng"
       />
 
-      <!-- <label for="material" id="somePrepLength">Ingredients</label>
+      <!-- <label for="ingred" id="someLabelIngred">Ingredient 1</label>
+      <textarea
+        name="ingred"
+        rows="1"
+        placeholder="quantity"
+        class="ingreds"
+      ></textarea>
+      <textarea
+        name="ingred"
+        rows="1"
+        placeholder="type (piece, ribs, quart)"
+        class="ingreds"
+      ></textarea>
+      <textarea
+        name="ingred"
+        rows="1"
+        placeholder="name of the ingredient"
+        class="ingreds"
+      ></textarea> -->
+
+      <!-- <label for="material" id="someMaterial">Ingredients</label>
       <input
         type="text"
         id="quantity"
         name="material"
-        v-model="formIngred[0].quantity"
         placeholder="quantity"
-      />
-      <input type="text" id="type" name="material" v-model="formIngred[1].type" placeholder="material" />
-      <input
-        type="text"
-        id="nameOfIng"
-        name="material"
-        v-model="formIngred[2].nameOfIng"
-        placeholder="nameOfIng"
+        v-model.lazy="formIngred1"
       /> -->
 
       <button class="btn btn-outline-primary" @click="hideEditing()">
@@ -170,6 +182,9 @@
       </button>
       <button class="btn btn-outline-primary" @click="fillData()">
         Set to original values
+      </button>
+      <button class="btn btn-outline-primary" @click="changeData()">
+        Change values
       </button>
     </form>
   </div>
@@ -189,7 +204,8 @@ export default {
       formDesc: this.oneSoupDescription,
       formFinAmo: this.oneSoupFinalAmount,
       formPrepLeng: this.oneSoupPrepLength,
-      formIngred: this.oneSoupIngredients,
+
+      formIngred1: this.oneSoupIngredients,
     };
   },
   props: {
@@ -219,8 +235,29 @@ export default {
       this.formDesc = this.oneSoupDescription;
       this.formFinAmo = this.oneSoupFinalAmount;
       this.formPrepLeng = this.oneSoupPrepLength;
-      this.formIngred = this.oneSoupIngredients;
+      this.formIngred1 = this.oneSoupIngredients;
     },
+    changeData() {
+      console.log(this.formName);
+      this.$emit(
+        "changeData",
+        this.oneSoupIndex,
+        this.formName,
+        this.formDesc,
+        parseInt(this.formFinAmo),
+        parseInt(this.formPrepLeng),
+      );
+
+      setTimeout(() => {
+        this.fillData();
+        this.hideEditing();
+      }, 300);
+
+      // if (this.formName !== "" && this.formFinAmo !== 0 && this.formPrepLeng !== 0) {
+
+      // }
+    },
+    onSubmit() {},
   },
   // created() {
   //   this.fillData();
@@ -272,5 +309,12 @@ li {
 form {
   padding: 15px;
 }
-
+input,
+textarea {
+  margin-bottom: 10px;
+}
+.ingreds {
+  max-width: 200px;
+  display: block;
+}
 </style>
