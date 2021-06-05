@@ -2,25 +2,39 @@
   <div class="soupsList">
     <h2>Please choose soup from droplist:</h2>
 
+    <button
+      class="btn btn-primary"
+      v-show="!showAllRec"
+      @click="showAllRecipes()"
+    >
+      Show all recipes
+    </button>
+    <button
+      class="btn btn-primary"
+      v-show="showAllRec"
+      @click="showAllRecipes()"
+    >
+      Hide all recipes
+    </button>
+
+    <button class="btn btn-primary" v-show="showIt" @click="hideItem()">
+      Hide current recipe
+    </button>
+
     <div class="dropdown show">
-      <a
+      <button
         class="btn btn-secondary dropdown-toggle"
-        href="#"
-        role="button"
-        id="dropdownMenuLink"
+        type="button"
+        id="dropdownMenuButton"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
+        v-show="!showIt"
       >
         List of soups:
-      </a>
+      </button>
 
-      <div
-        class="dropdown-menu"
-        aria-labelledby="dropdownMenuLink"
-        v-for="oneSoup in listOfSoups"
-        :key="oneSoup"
-      >
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <div
           class="dropdown-item"
           href="#"
@@ -34,6 +48,7 @@
       </div>
     </div>
 
+    <!-- Whole list -->
     <div v-for="oneSoup in listOfSoups" :key="oneSoup">
       <Soup
         :oneSoupName="oneSoup.name"
@@ -41,10 +56,11 @@
         :oneSoupFinalAmount="oneSoup.finalAmount"
         :oneSoupPrepLength="oneSoup.preparationLength"
         :oneSoupIngredients="oneSoup.ingredients"
-        v-show="isShowed"
+        v-show="showAllRec"
       />
     </div>
 
+    <!-- One soup -->
     <div>
       <Soup
         :oneSoupName="soupName"
@@ -52,7 +68,10 @@
         :oneSoupFinalAmount="soupFinalAmount"
         :oneSoupPrepLength="soupPrepLength"
         :oneSoupIngredients="soupIngredients"
+        :oneSoupIndex="soupIndex"
+        :showIcon="true"
         v-show="showIt"
+        @deleteItem="deleteItem"
       />
     </div>
   </div>
@@ -70,19 +89,21 @@ export default {
   },
   data() {
     return {
-      isShowed: false,
+      showAllRec: false,
       showIt: false,
+
       soupName: "",
       soupDescription: [],
       soupFinalAmount: 0,
       soupPrepLength: 0,
       soupIngredients: [],
+      soupIndex: 1,
       list: this.listOfSoups,
     };
   },
   methods: {
-    toogleOff() {
-      this.isShowed = true;
+    showAllRecipes() {
+      this.showAllRec = !this.showAllRec;
     },
     showItem(index) {
       this.soupName = this.list[index].name;
@@ -90,8 +111,16 @@ export default {
       this.soupFinalAmount = this.list[index].finalAmount;
       this.soupPrepLength = this.list[index].preparationLength;
       this.soupIngredients = this.list[index].ingredients;
-    
+
+      this.soupIndex = index;
       this.showIt = true;
+    },
+    hideItem() {
+      this.showIt = false;
+    },
+    deleteItem(index) {
+      this.hideItem();
+      this.$emit("deleteItem", index);
     },
   },
 };
@@ -110,7 +139,7 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
-  color: #42b983;
+.btn {
+  display: inline-block;
 }
 </style>
