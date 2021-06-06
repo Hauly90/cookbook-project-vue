@@ -62,23 +62,6 @@
         </div>
       </div>
 
-      <!-- <div class="card" style="width: 30rem">
-      <div class="card-body">
-        <h4>Ingredients:</h4>
-        <ul v-for="ingred in oneSoupIngredients" :key="ingred" id="ingredients">
-          <li style="list">
-            {{
-              ingred.nameOfIng +
-              " - " +
-              (ingred.quantity === 0 ? "" : ingred.quantity) +
-              " " +
-              ingred.type
-            }}
-          </li>
-        </ul>
-      </div>
-    </div> -->
-
       <p>
         <a
           class="btn btn-dark"
@@ -124,7 +107,6 @@
       style="width: 35rem"
       @submit.prevent="onSubmit()"
     >
-      <!-- @submit.prevent="onSubmit()" -->
       <label for="desc" id="someDesc">Step 1</label>
       <textarea name="desc" rows="6" v-model="formDesc[0]"></textarea>
 
@@ -147,35 +129,6 @@
         name="prepLength"
         v-model="formPrepLeng"
       />
-
-      <!-- <label for="ingred" id="someLabelIngred">Ingredient 1</label>
-      <textarea
-        name="ingred"
-        rows="1"
-        placeholder="quantity"
-        class="ingreds"
-      ></textarea>
-      <textarea
-        name="ingred"
-        rows="1"
-        placeholder="type (piece, ribs, quart)"
-        class="ingreds"
-      ></textarea>
-      <textarea
-        name="ingred"
-        rows="1"
-        placeholder="name of the ingredient"
-        class="ingreds"
-      ></textarea> -->
-
-      <!-- <label for="material" id="someMaterial">Ingredients</label>
-      <input
-        type="text"
-        id="quantity"
-        name="material"
-        placeholder="quantity"
-        v-model.lazy="formIngred1"
-      /> -->
 
       <button class="btn btn-outline-primary" @click="hideEditing()">
         Close X
@@ -214,7 +167,7 @@ export default {
     oneSoupFinalAmount: Number,
     oneSoupPrepLength: Number,
     oneSoupIngredients: Array,
-    oneSoupIndex: Number,
+    oneSoupId: String,
     showIcon: Boolean,
   },
 
@@ -228,7 +181,7 @@ export default {
       this.showForm = false;
     },
     deleteItem() {
-      this.$emit("deleteItem", this.oneSoupIndex);
+      this.$emit("deleteItem", this.oneSoupId);
     },
     fillData() {
       this.formName = this.oneSoupName;
@@ -238,14 +191,13 @@ export default {
       this.formIngred1 = this.oneSoupIngredients;
     },
     changeData() {
-      console.log(this.formName);
       this.$emit(
         "changeData",
-        this.oneSoupIndex,
         this.formName,
         this.formDesc,
         parseInt(this.formFinAmo),
         parseInt(this.formPrepLeng),
+        this.oneSoupId,
       );
 
       setTimeout(() => {
@@ -259,9 +211,7 @@ export default {
     },
     onSubmit() {},
   },
-  // created() {
-  //   this.fillData();
-  // }
+  
 };
 </script>
 

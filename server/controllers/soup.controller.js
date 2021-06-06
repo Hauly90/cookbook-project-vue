@@ -1,5 +1,6 @@
 // import soupsList from '../storage/soupsCookbook.js';
 import Soup from '../models/Soup.js';
+import { v4 as uuidv4 } from 'uuid';
 
 let soupsList = [
     new Soup(
@@ -159,3 +160,13 @@ export const updateSoup = (req, res) => {
 
     res.send(`Soup with the id ${id} has been updated.`);
 }
+
+export const addSoup = (req, res) => {
+    const oneSoup = req.body;
+
+    soupsList.push({ ...oneSoup, id: uuidv4() });
+    res.status(201);
+
+    res.send(`Soup with the name ${oneSoup.name} added to the database!`);
+}
+

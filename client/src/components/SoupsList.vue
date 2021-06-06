@@ -1,6 +1,6 @@
 <template>
   <div class="soupsList">
-    <h2>Please choose soup from droplist:</h2>
+    <h3>Please choose your action (list, details, add)</h3>
 
     <button
       class="btn btn-primary"
@@ -69,6 +69,7 @@
         :oneSoupPrepLength="soupPrepLength"
         :oneSoupIngredients="soupIngredients"
         :oneSoupIndex="soupIndex"
+        :oneSoupId="soupId"
         :showIcon="true"
         v-show="showIt"
         @deleteItem="deleteItem"
@@ -100,6 +101,7 @@ export default {
       soupIngredients: [],
       soupIndex: 1,
       list: this.listOfSoups,
+      soupId: "",
     };
   },
   methods: {
@@ -107,7 +109,7 @@ export default {
       this.showAllRec = !this.showAllRec;
     },
     showItem(index) {
-      console.log(this.listOfSoups[index].name);
+      // console.log(this.listOfSoups[index].name);
 
       this.soupName = this.listOfSoups[index].name;
       this.soupDescription = this.listOfSoups[index].description;
@@ -116,17 +118,19 @@ export default {
       this.soupIngredients = this.listOfSoups[index].ingredients;
 
       this.soupIndex = index;
+      this.soupId = this.listOfSoups[index].id;
+
       this.showIt = true;
     },
     hideItem() {
       this.showIt = false;
     },
-    deleteItem(index) {
+    deleteItem(id) {
       this.hideItem();
-      this.$emit("deleteItem", index);
+      this.$emit("deleteItem", id);
     },
-    changeData(index, formName, formDesc, formFinAmo, formPrepLeng) {
-        this.$emit("changeData", index, formName, formDesc, formFinAmo, formPrepLeng);
+    changeData(formName, formDesc, formFinAmo, formPrepLeng, id) {
+        this.$emit("changeData", formName, formDesc, formFinAmo, formPrepLeng, id);
     }
   },
 };
@@ -134,9 +138,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
+/* h3 {
   margin: 40px 0 0;
-}
+} */
 ul {
   list-style-type: none;
   padding: 0;
