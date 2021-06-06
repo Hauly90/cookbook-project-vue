@@ -107,11 +107,13 @@ export default {
       this.showAllRec = !this.showAllRec;
     },
     showItem(index) {
-      this.soupName = this.list[index].name;
-      this.soupDescription = this.list[index].description;
-      this.soupFinalAmount = this.list[index].finalAmount;
-      this.soupPrepLength = this.list[index].preparationLength;
-      this.soupIngredients = this.list[index].ingredients;
+      console.log(this.listOfSoups[index].name);
+
+      this.soupName = this.listOfSoups[index].name;
+      this.soupDescription = this.listOfSoups[index].description;
+      this.soupFinalAmount = this.listOfSoups[index].finalAmount;
+      this.soupPrepLength = this.listOfSoups[index].preparationLength;
+      this.soupIngredients = this.listOfSoups[index].ingredients;
 
       this.soupIndex = index;
       this.showIt = true;
