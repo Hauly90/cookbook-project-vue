@@ -6,15 +6,33 @@
       This site will provide you with several cookbooks according to your taste!
     </p>
 
-    <button type="button" class="btn btn-success" @click="showCookbook()">
+    <button type="button" class="btn btn-success" @click="showSoupsBook()">
       Cookbook - soups
     </button>
-    <button type="button" class="btn btn-dark">Cookbook - main dishes</button>
-    <button type="button" class="btn btn-warning">Cookbook - drinks</button>
+    <button type="button" class="btn btn-dark" @click="showMainDishesBook()">
+      Cookbook - main dishes
+    </button>
+    <button type="button" class="btn btn-warning" @click="showDrinksBook()">
+      Cookbook - drinks
+    </button>
 
     <SoupsList
       :listOfSoups="listOfSoups"
-      v-show="isShowed"
+      v-show="showSoups"
+      @deleteItem="deleteItem"
+      @changeData="changeData"
+    />
+
+    <SoupsList
+      :listOfSoups="listOfDishes"
+      v-show="showDishes"
+      @deleteItem="deleteItem"
+      @changeData="changeData"
+    />
+
+    <SoupsList
+      :listOfSoups="listOfDrinks"
+      v-show="showDrinks"
       @deleteItem="deleteItem"
       @changeData="changeData"
     />
@@ -35,13 +53,23 @@ export default {
   },
   data() {
     return {
-      isShowed: false,
+      showSoups: false,
+      showDishes: false,
+      showDrinks: false,
       listOfSoups: [],
+      listOfDishes: [],
+      listOfDrinks: [],
     };
   },
   methods: {
-    showCookbook() {
-      this.isShowed = !this.isShowed;
+    showSoupsBook() {
+      this.showSoups = !this.showSoups;
+    },
+    showMainDishesBook() {
+      this.showDishes = !this.showDishes;
+    },
+    showDrinksBook() {
+      this.showDrinks = !this.showDrinks;
     },
     deleteItem(id) {
       fetch(`http://localhost:3000/soup/${id}`, {
@@ -142,6 +170,9 @@ export default {
         fetch("http://localhost:3000/soup/")
           .then((response) => response.json())
           .then((data) => (this.listOfSoups = data));
+        fetch("http://localhost:3000/dish/")
+          .then((response) => response.json())
+          .then((data) => (this.listOfDishes = data));
       }, 300);
     },
   },
