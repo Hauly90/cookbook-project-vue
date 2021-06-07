@@ -1,4 +1,4 @@
-import soupsList from '../storage/soupsCookbook.js';
+import {soupsList, setA} from '../storage/soupsCookbook.js';
 // import Soup from '../models/Soup.js';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -141,7 +141,7 @@ export const getAllSoups = (req, res) => {
 export const deleteSoup = (req, res) => {
     let { id } = req.params;
 
-    soupsList = soupsList.filter((oneSoup) => oneSoup.id !== id);
+    setA(soupsList.filter((oneSoup) => oneSoup.id !== id));
 
     res.send(`Soup with the id ${id} deleted from the database.`);
 };

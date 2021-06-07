@@ -130,4 +130,8 @@ let soupsList = [
     )
 ]
 
-export default soupsList;
+function setA(value) {
+    soupsList = value;
+}
+
+export {soupsList, setA};

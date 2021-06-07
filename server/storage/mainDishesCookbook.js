@@ -2,129 +2,143 @@ import Dish from '../models/Dish.js';
 
 let mainDishesList = [
     new Dish(
-        "Main dish1",
+        "Sicilian Roasted Chicken",
         [
-            "Place the butter in a large soup pot over medium-low heat. Stir in onion, celery, and sliced garlic. Cook slowly until the onions are translucent but not brown, 5 to 8 minutes.",
-            "Mix in ham, bay leaf, and split peas. Pour in chicken stock and water. Stir to combine, and simmer slowly until the peas are tender and the soup is thick, about 1 hour and 15 minutes. Stir occasionally. Season with salt and black pepper to serve.",
+            "Preheat oven to 425 degrees F (220 degrees C). Grease a 9x13-inch pan with cooking spray.",
+            "Arrange chicken pieces in the baking pan. Sprinkle salt, pepper, paprika, garlic powder, and oregano over both sides.",
+            "Roast in the preheated oven until chicken is browned and the juices run clear, about 1 hour. An instant-read thermometer inserted near the bone should read 165 degrees F (74 degrees C).",
         ],
-        8,
-        110,
+        6,
+        75,
         [
-            {
-                quantity: 2,
-                type: "tablespoons",
-                nameOfIng: "butter",
-            },
-            {
-                quantity: 0.5,
-                type: "piece",
-                nameOfIng: "onion",
-            },
-            {
-                quantity: 2,
-                type: "ribs",
-                nameOfIng: "celery",
-            },
-            {
-                quantity: 3,
-                type: "cloves",
-                nameOfIng: "garlic",
-            },
             {
                 quantity: 1,
-                type: "pound",
-                nameOfIng: "ham",
+                type: "piece",
+                nameOfIng: "cooking spray",
             },
             {
                 quantity: 1,
                 type: "piece",
-                nameOfIng: "bay leaf",
+                nameOfIng: "chicken",
             },
             {
                 quantity: 1,
-                type: "quart",
-                nameOfIng: "chicken stock",
+                type: "teaspoon",
+                nameOfIng: "salt",
             },
             {
-                quantity: 2.5,
-                type: "coups",
-                nameOfIng: "water",
-            },
-            {
-                quantity: 0,
-                type: "to taste",
-                nameOfIng: "salt and ground black pepper",
-            },
-        ],
-    ),
-    new Dish(
-        "Main dish2",
-        [
-            "Melt butter in a saucepan. Add flour and make a paste. Add milk and bouillon cubes. Cook over low heat until thickened. Add pepper to taste. Add more milk when adding the other soup ingredients, depending on the thickness you desire.",
-            "To this base you may add steamed broccoli and American cheese; or chunks of baked potato (peel and all) with American cheese, bacon pieces, and chives; or pureed, stewed tomatoes for a bisque; or leeks that have been cleaned well, steamed, and chopped; or cooked asparagus cut in pieces (if canned asparagus is used, add some of the liquid as well), topped with grated cheese and bacon pieces.",
-        ],
-        8,
-        15,
-        [
-            {
-                quantity: 0.5,
-                type: "cup",
-                nameOfIng: "butter",
-            },
-            {
-                quantity: 6,
-                type: "tablesponn",
-                nameOfIng: "flour",
-            },
-            {
-                quantity: 2,
-                type: "cups",
-                nameOfIng: "milk",
-            },
-            {
-                quantity: 2,
-                type: "cubes",
-                nameOfIng: "chicken bouillon",
-            },
-            {
-                quantity: 0,
-                type: "to taste",
+                quantity: 1,
+                type: "teaspoon",
                 nameOfIng: "ground black pepper",
             },
+            {
+                quantity: 1,
+                type: "teaspoon",
+                nameOfIng: "ground paprika",
+            },
+            {
+                quantity: 1,
+                type: "teaspoon",
+                nameOfIng: "garlic powder",
+            },
+            {
+                quantity: 1,
+                type: "teaspoon",
+                nameOfIng: "dried oregano",
+            },
         ],
     ),
     new Dish(
-        "Main dish3",
+        "Cardamom Maple Salmon",
         [
-            "In a medium saucepan over medium-high heat, combine dashi granules and water; bring to a boil. Reduce heat to medium, and whisk in the miso paste. Stir in tofu. Separate the layers of the green onions, and add them to the soup. Simmer gently for 2 to 3 minutes before serving.",
+            "Stir salt, paprika, cardamom, coriander, and black pepper together in a bowl. Add oil and maple syrup and stir until evenly combined.",
+            "Preheat a non-stick frying pan over medium-high heat, about 350 degrees F (175 degrees C).",
+            "Dredge salmon pieces through the maple syrup mixture until evenly coated on all sides. Cook salmon in the preheated pan until fish flakes easily with a fork, 5 to 7 minutes per side.",
         ],
-        4,
-        20,
+        6,
+        25,
         [
             {
-                quantity: 2,
+                quantity: 1.5,
                 type: "teaspoons",
-                nameOfIng: "dashi granules",
+                nameOfIng: "salt",
+            },
+            {
+                quantity: 1,
+                type: "teaspoon",
+                nameOfIng: "paprika",
+            },
+            {
+                quantity: 1,
+                type: "teaspoon",
+                nameOfIng: "ground cardamom",
+            },
+            {
+                quantity: 1,
+                type: "teaspoon",
+                nameOfIng: "ground coriander",
+            },
+            {
+                quantity: 0.5,
+                type: "teaspoon",
+                nameOfIng: "ground black pepper",
+            },
+            {
+                quantity: 0.25,
+                type: "cup",
+                nameOfIng: "grapeseed oil",
+            },
+            {
+                quantity: 2,
+                type: "tablespoons",
+                nameOfIng: "maple syrup",
+            },
+            {
+                quantity: 1,
+                type: "piece",
+                nameOfIng: "salmon fillet",
+            },
+        ],
+    ),
+    new Dish(
+        "Barbeque Chicken Grilled Pizza",
+        [
+            "Preheat grill for medium heat and lightly oil the grate. Mix chicken and 2 tablespoons barbeque sauce together in a bowl until evenly coated.",
+            "Roll dough onto a work surface and cut in half to form 2 rectangles. Brush the top of each rectangle with olive oil. Place dough, oil-side down, onto the grill; cook until bottom of dough is browned and top is bubbling up, about 5 minutes. Brush the tops of each dough with oil and flip.",
+            "Spread the remaining barbeque sauce over each crust; top with chicken, Colby-Monterey Jack cheese, and tomatoes. Close the lid of the grill and cook pizza until cheese is melted, 2 to 3 minutes. Remove pizza from grill and cool before slicing, 2 to 3 minutes."
+        ],
+        6,
+        30,
+        [
+            {
+                quantity: 1,
+                type: "cup",
+                nameOfIng: "chopped cooked chicken",
             },
             {
                 quantity: 0.5,
                 type: "cup",
-                nameOfIng: "wap",
-            },
-            {
-                quantity: 3,
-                type: "tablespoons",
-                nameOfIng: "miso paste",
+                nameOfIng: "barbeque sauce",
             },
             {
                 quantity: 1,
                 type: "package",
-                nameOfIng: "silken tofu",
+                nameOfIng: "refrigerated pizza dough",
             },
             {
                 quantity: 2,
-                type: "pieces",
-                nameOfIng: "green onions",
+                type: "tablespoons",
+                nameOfIng: "olive oil",
+            },
+            {
+                quantity: 1,
+                type: "cup",
+                nameOfIng: "shredded cheese",
+            },
+            {
+                quantity: 1,
+                type: "cup",
+                nameOfIng: "diced tomatoes",
             },
         ],
     )

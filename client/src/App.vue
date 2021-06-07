@@ -37,7 +37,9 @@
       @changeData="changeData"
     />
 
-    <SoupAdd v-show="isShowed" @addTodo="addSoup" />
+    <SoupAdd v-show="showSoups" @addTodo="addSoup" />
+    <SoupAdd v-show="showDishes" @addTodo="addSoup" />
+    <SoupAdd v-show="showDrinks" @addTodo="addSoup" />
   </div>
 </template>
 
@@ -77,7 +79,7 @@ export default {
         headers: {
           "Content-Type": "application/json",
         },
-      }).then(this.showSoupList());
+      }).then(this.setAllBooks());
       // this.listOfSoups.splice(index, 1);
     },
     changeData(formName, formDesc, formFinAmo, formPrepLeng, id) {
@@ -91,7 +93,7 @@ export default {
           preparationLength: formPrepLeng,
           id,
         }),
-      }).then(this.showSoupList());
+      }).then(this.setAllBooks());
 
       // this.listOfSoups[index].name = formName;
       // this.listOfSoups[index].description = formDesc;
@@ -165,7 +167,7 @@ export default {
       //   ],
       // });
     },
-    showSoupList() {
+    setAllBooks() {
       setTimeout(() => {
         fetch("http://localhost:3000/soup/")
           .then((response) => response.json())
@@ -177,7 +179,7 @@ export default {
     },
   },
   created() {
-    this.showSoupList();
+    this.setAllBooks();
   },
 };
 </script>
