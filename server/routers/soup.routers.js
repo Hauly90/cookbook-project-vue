@@ -1,11 +1,13 @@
 import express from 'express';
-import { getAllSoups, deleteSoup, updateSoup, addSoup} from '../controllers/soup.controller.js';
+import { getAllSoups, deleteSoup, updateSoup, addSoup, getAllDishes } from '../controllers/soup.controller.js';
 
 const router = express.Router();
 
 router.use(express.json());
 
-router.get('/', getAllSoups);
+router.get('/soups', getAllSoups);
+
+router.get('/dish', getAllDishes);
 
 router.delete('/:id', deleteSoup);
 

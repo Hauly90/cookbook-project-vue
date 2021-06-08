@@ -108,6 +108,43 @@
         v-model="formIngredName3"
       />
 
+      <!-- <h1>{{ listOfTypesOfFoods[0] }}</h1> -->
+
+      <label for="types">Choose a type of food:</label>
+
+      <select name="types" id="type" v-model="typeOfFood">
+        <option value="soup" class="typeOfF" >soup</option>
+        <option value="dish" class="typeOfF">dish</option>
+        <option value="drink" class="typeOfF">drink</option>
+      </select>
+
+      <!-- <div class="dropdown show">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          v-show="!showIt"
+        >
+          List of soups:
+        </button>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div
+            class="dropdown-item"
+            href="#"
+            v-for="oneType in listOfTypes"
+            :key="oneType"
+          >
+            <a class="dropdown-item" href="#" @click="showItem">
+              {{ oneType.name }}
+            </a>
+          </div>
+        </div>
+      </div> -->
+
       <button class="btn btn-outline-primary" @click.prevent="createNew()">
         Create
       </button>
@@ -142,7 +179,14 @@ export default {
       formIngredQuan3: 0,
       formIngredType3: "",
       formIngredName3: "",
+
+      typeOfFood: "",
+
+      list: this.listOfTypesOfFoods,
     };
+  },
+  props: {
+    listOfTypesOfFoods: Array,
   },
   methods: {
     showEditing() {
@@ -168,7 +212,8 @@ export default {
           this.formIngredName2,
           this.formIngredQuan3,
           this.formIngredType3,
-          this.formIngredName3
+          this.formIngredName3,
+          this.typeOfFood,
         );
 
         this.isShowed = false;
@@ -232,7 +277,8 @@ input,
 textarea {
   margin-bottom: 10px;
 }
-.ingreds {
+.ingreds,
+#type {
   max-width: 200px;
   display: block;
   margin-right: auto;

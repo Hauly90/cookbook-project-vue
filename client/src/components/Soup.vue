@@ -130,14 +130,11 @@
         v-model="formPrepLeng"
       />
 
-      <button class="btn btn-outline-primary" @click="hideEditing()">
-        Close X
-      </button>
-      <button class="btn btn-outline-primary" @click="fillData()">
-        Set to original values
-      </button>
-      <button class="btn btn-outline-primary" @click="changeData()">
+      <button class="btn btn-outline-success" @click="changeData()">
         Change values
+      </button>
+      <button class="btn btn-outline-danger" @click="hideEditing()">
+        Close X
       </button>
     </form>
   </div>
@@ -168,6 +165,7 @@ export default {
     oneSoupPrepLength: Number,
     oneSoupIngredients: Array,
     oneSoupId: String,
+    oneSoupType: String,
     showIcon: Boolean,
   },
 
@@ -175,20 +173,19 @@ export default {
     showEditing() {
       this.showAllInfo = false;
       this.showForm = true;
+
+      this.formName = this.oneSoupName;
+      this.formDesc = this.oneSoupDescription;
+      this.formFinAmo = this.oneSoupFinalAmount;
+      this.formPrepLeng = this.oneSoupPrepLength;
+      this.formIngred1 = this.oneSoupIngredients;
     },
     hideEditing() {
       this.showAllInfo = true;
       this.showForm = false;
     },
     deleteItem() {
-      this.$emit("deleteItem", this.oneSoupId);
-    },
-    fillData() {
-      this.formName = this.oneSoupName;
-      this.formDesc = this.oneSoupDescription;
-      this.formFinAmo = this.oneSoupFinalAmount;
-      this.formPrepLeng = this.oneSoupPrepLength;
-      this.formIngred1 = this.oneSoupIngredients;
+      this.$emit("deleteItem", this.oneSoupId, this.oneSoupType);
     },
     changeData() {
       this.$emit(
@@ -198,10 +195,10 @@ export default {
         parseInt(this.formFinAmo),
         parseInt(this.formPrepLeng),
         this.oneSoupId,
+        this.oneSoupType,
       );
 
       setTimeout(() => {
-        this.fillData();
         this.hideEditing();
       }, 300);
 

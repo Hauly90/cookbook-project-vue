@@ -1,4 +1,5 @@
-import {soupsList, setA} from '../storage/soupsCookbook.js';
+import { soupsList, setA } from '../storage/soupsCookbook.js';
+import { mainDishesList, setB } from '../storage/mainDishesCookbook.js';
 // import Soup from '../models/Soup.js';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -132,40 +133,69 @@ import { v4 as uuidv4 } from 'uuid';
 //     )
 // ]
 
-
 export const getAllSoups = (req, res) => {
     res.status(200);
     res.send(soupsList);
 };
 
+export const getAllDishes = (req, res) => {
+    res.status(200);
+    res.send(mainDishesList);
+};
+
 export const deleteSoup = (req, res) => {
     let { id } = req.params;
+    const { type } = req.body;
 
-    setA(soupsList.filter((oneSoup) => oneSoup.id !== id));
-
-    res.send(`Soup with the id ${id} deleted from the database.`);
+    if (type === "soup") {
+        setA(soupsList.filter((oneSoup) => oneSoup.id !== id));
+        res.send(`Soup with the id ${id} deleted from the database.`);
+    } else if (type === "dish") {
+        setB(mainDishesList.filter((oneDish) => oneDish.id !== id));
+        res.send(`Dish with the id ${id} adddded from the database.`);
+    }
 };
 
 export const updateSoup = (req, res) => {
     const { id } = req.params;
-    const { name, description, finalAmount, preparationLength, ingredients } = req.body;
+    const { name, description, finalAmount, preparationLength, ingredients, type } = req.body;
 
-    const oneSoup = soupsList.find((oneSoup) => oneSoup.id === id);
+    if (type === "soup") {
+        const oneSoup = soupsList.find((oneSoup) => oneSoup.id === id);
 
-    if (name) oneSoup.name = name;
-    if (description) oneSoup.description = description;
-    if (finalAmount) oneSoup.finalAmount = finalAmount;
-    if (preparationLength) oneSoup.preparationLength = preparationLength;
-    if (ingredients) oneSoup.ingredients = ingredients;
+        if (name) oneSoup.name = name;
+        if (description) oneSoup.description = description;
+        if (finalAmount) oneSoup.finalAmount = finalAmount;
+        if (preparationLength) oneSoup.preparationLength = preparationLength;
+        if (ingredients) oneSoup.ingredients = ingredients;
+    } else if (type === "dish") {
+        const oneDish = mainDishesList.find((oneDish) => oneDish.id === id);
+
+        if (name) oneDish.name = name;
+        if (description) oneDish.description = description;
+        if (finalAmount) oneDish.finalAmount = finalAmount;
+        if (preparationLength) oneDish.preparationLength = preparationLength;
+        if (ingredients) oneDish.ingredients = ingredients;
+    }
+
 
     res.send(`Soup with the id ${id} has been updated.`);
 }
 
 export const addSoup = (req, res) => {
-    const oneSoup = req.body;
+    const oneFood = req.body;
+    const { type } = req.body;
+    
 
-    soupsList.push({ ...oneSoup, id: uuidv4() });
-    res.status(201);
+    if (type === "soup") {
+        soupsList.push({ ...oneFood, id: uuidv4() });
+        res.status(201);
+        res.send(`Soup with the name ${oneSoup.name} added to the database!`);
+    } else if (type === "dish") {
+        mainDishesList.push({ ...oneFood, id: uuidv4() });
+        res.status(201);
+        res.send(`Dish with the name ${oneSoup.name} added to the database!`);
+    }
 
     res.send(`Soup with the name ${oneSoup.name} added to the database!`);
 }

@@ -70,6 +70,7 @@
         :oneSoupIngredients="soupIngredients"
         :oneSoupIndex="soupIndex"
         :oneSoupId="soupId"
+        :oneSoupType="soupType"
         :showIcon="true"
         v-show="showIt"
         @deleteItem="deleteItem"
@@ -102,6 +103,7 @@ export default {
       soupIndex: 1,
       list: this.listOfSoups,
       soupId: "",
+      soupType: "",
     };
   },
   methods: {
@@ -119,18 +121,19 @@ export default {
 
       this.soupIndex = index;
       this.soupId = this.listOfSoups[index].id;
+      this.soupType = this.listOfSoups[index].type;
 
       this.showIt = true;
     },
     hideItem() {
       this.showIt = false;
     },
-    deleteItem(id) {
+    deleteItem(id, foodType) {
       this.hideItem();
-      this.$emit("deleteItem", id);
+      this.$emit("deleteItem", id, foodType);
     },
-    changeData(formName, formDesc, formFinAmo, formPrepLeng, id) {
-        this.$emit("changeData", formName, formDesc, formFinAmo, formPrepLeng, id);
+    changeData(formName, formDesc, formFinAmo, formPrepLeng, id, foodType) {
+        this.$emit("changeData", formName, formDesc, formFinAmo, formPrepLeng, id, foodType);
     }
   },
 };

@@ -144,4 +144,9 @@ let mainDishesList = [
     )
 ]
 
-export default mainDishesList;
+function setB(value) {
+    mainDishesList = value;
+}
+
+export {mainDishesList, setB};
+// export default mainDishesList;

@@ -37,9 +37,21 @@
       @changeData="changeData"
     />
 
-    <SoupAdd v-show="showSoups" @addTodo="addSoup" />
-    <SoupAdd v-show="showDishes" @addTodo="addSoup" />
-    <SoupAdd v-show="showDrinks" @addTodo="addSoup" />
+    <SoupAdd
+      v-show="showSoups"
+      @addTodo="addSoup"
+      @listOfTypes="listOfTypesOfFoods"
+    />
+    <SoupAdd
+      v-show="showDishes"
+      @addTodo="addSoup"
+      @listOfTypes="listOfTypesOfFoods"
+    />
+    <SoupAdd
+      v-show="showDrinks"
+      @addTodo="addSoup"
+      @listOfTypesOfFoods="listOfTypesOfFoods"
+    />
   </div>
 </template>
 
@@ -61,29 +73,45 @@ export default {
       listOfSoups: [],
       listOfDishes: [],
       listOfDrinks: [],
+
+      listOfTypesOfFoods: ["soup", "dish", "drink"],
     };
   },
   methods: {
     showSoupsBook() {
       this.showSoups = !this.showSoups;
+
+      this.showDishes = false;
+      this.showDrinks = false;
     },
     showMainDishesBook() {
       this.showDishes = !this.showDishes;
+
+      this.showSoups = false;
+      this.showDrinks = false;
     },
     showDrinksBook() {
       this.showDrinks = !this.showDrinks;
+
+      this.showSoups = false;
+      this.showDishes = false;
     },
-    deleteItem(id) {
-      fetch(`http://localhost:3000/soup/${id}`, {
+    deleteItem(id, foodType) {
+      console.log(foodType);
+      fetch(`http://localhost:3000/food/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          type: foodType,
+        }),
       }).then(this.setAllBooks());
       // this.listOfSoups.splice(index, 1);
     },
-    changeData(formName, formDesc, formFinAmo, formPrepLeng, id) {
-      fetch(`http://localhost:3000/soup/${id}`, {
+    changeData(formName, formDesc, formFinAmo, formPrepLeng, id, foodType) {
+      console.log(foodType);
+      fetch(`http://localhost:3000/food/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -92,6 +120,7 @@ export default {
           finalAmount: formFinAmo,
           preparationLength: formPrepLeng,
           id,
+          type: foodType,
         }),
       }).then(this.setAllBooks());
 
@@ -113,13 +142,15 @@ export default {
       formIngredName2,
       formIngredQuan3,
       formIngredType3,
-      formIngredName3
+      formIngredName3,
+      foodType,
     ) {
       fetch("http://localhost:3000/soup/addSoup/soup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formName,
+          type: foodType,
           description: formDesc,
           finalAmount: formFinAmo,
           preparationLength: formPrepLeng,
@@ -141,7 +172,7 @@ export default {
             },
           ],
         }),
-      }).then(this.showSoupList());
+      }).then(this.setAllBooks());
 
       // this.listOfSoups.push({
       //   name: formName,
@@ -169,10 +200,10 @@ export default {
     },
     setAllBooks() {
       setTimeout(() => {
-        fetch("http://localhost:3000/soup/")
+        fetch("http://localhost:3000/food/soups")
           .then((response) => response.json())
           .then((data) => (this.listOfSoups = data));
-        fetch("http://localhost:3000/dish/")
+        fetch("http://localhost:3000/food/dish")
           .then((response) => response.json())
           .then((data) => (this.listOfDishes = data));
       }, 300);
