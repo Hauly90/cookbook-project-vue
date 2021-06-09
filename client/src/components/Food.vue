@@ -1,7 +1,7 @@
 <template>
-  <div class="soupsList">
-    <div class="allSoupsInfo" v-show="showAllInfo">
-      <h2>{{ oneSoupName }}</h2>
+  <div class="foodList">
+    <div class="allFoodInfo" v-show="showAllInfo">
+      <h2>{{ oneFoodName }}</h2>
 
       <span type="button" @click="showEditing()" v-show="showIc">
         <!-- EDIT -->
@@ -42,7 +42,7 @@
       <div class="card" style="width: 30rem">
         <div class="card-body">
           <h4>Step by step:</h4>
-          <ul v-for="(step, index) in oneSoupDescription" :key="step">
+          <ul v-for="(step, index) in oneFoodDescription" :key="step">
             <li>{{ index + 1 + ". " + step }}</li>
           </ul>
         </div>
@@ -51,14 +51,14 @@
       <div class="card" style="width: 30rem">
         <div class="card-body">
           <h4>Final amount (servings):</h4>
-          <p>{{ oneSoupFinalAmount }}</p>
+          <p>{{ oneFoodFinalAmount }}</p>
         </div>
       </div>
 
       <div class="card" style="width: 30rem">
         <div class="card-body">
           <h4>Preparation length (in minutes):</h4>
-          <p>{{ oneSoupPrepLength }}</p>
+          <p>{{ oneFoodPrepLength }}</p>
         </div>
       </div>
 
@@ -80,7 +80,7 @@
               <div class="card-body">
                 <h4>Ingredients:</h4>
                 <ul
-                  v-for="ingred in oneSoupIngredients"
+                  v-for="ingred in oneFoodIngredients"
                   :key="ingred"
                   id="ingredients"
                 >
@@ -150,22 +150,22 @@ export default {
       showForm: false,
       showAllInfo: true,
 
-      formName: this.oneSoupName,
-      formDesc: this.oneSoupDescription,
-      formFinAmo: this.oneSoupFinalAmount,
-      formPrepLeng: this.oneSoupPrepLength,
+      formName: this.oneFoodName,
+      formDesc: this.oneFoodDescription,
+      formFinAmo: this.oneFoodFinalAmount,
+      formPrepLeng: this.oneFoodPrepLength,
 
-      formIngred1: this.oneSoupIngredients,
+      formIngred1: this.oneFoodIngredients,
     };
   },
   props: {
-    oneSoupName: String,
-    oneSoupDescription: Array,
-    oneSoupFinalAmount: Number,
-    oneSoupPrepLength: Number,
-    oneSoupIngredients: Array,
-    oneSoupId: String,
-    oneSoupType: String,
+    oneFoodName: String,
+    oneFoodDescription: Array,
+    oneFoodFinalAmount: Number,
+    oneFoodPrepLength: Number,
+    oneFoodIngredients: Array,
+    oneFoodId: String,
+    oneFoodType: String,
     showIcon: Boolean,
   },
 
@@ -174,18 +174,18 @@ export default {
       this.showAllInfo = false;
       this.showForm = true;
 
-      this.formName = this.oneSoupName;
-      this.formDesc = this.oneSoupDescription;
-      this.formFinAmo = this.oneSoupFinalAmount;
-      this.formPrepLeng = this.oneSoupPrepLength;
-      this.formIngred1 = this.oneSoupIngredients;
+      this.formName = this.oneFoodName;
+      this.formDesc = this.oneFoodDescription;
+      this.formFinAmo = this.oneFoodFinalAmount;
+      this.formPrepLeng = this.oneFoodPrepLength;
+      this.formIngred1 = this.oneFoodIngredients;
     },
     hideEditing() {
       this.showAllInfo = true;
       this.showForm = false;
     },
     deleteItem() {
-      this.$emit("deleteItem", this.oneSoupId, this.oneSoupType);
+      this.$emit("deleteItem", this.oneFoodId, this.oneFoodType);
     },
     changeData() {
       this.$emit(
@@ -194,8 +194,8 @@ export default {
         this.formDesc,
         parseInt(this.formFinAmo),
         parseInt(this.formPrepLeng),
-        this.oneSoupId,
-        this.oneSoupType,
+        this.oneFoodId,
+        this.oneFoodType,
       );
 
       setTimeout(() => {

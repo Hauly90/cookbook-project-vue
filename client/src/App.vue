@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Welcome!</h1>
+    <!-- <h2>{{listOfDishes}}</h2> -->
 
     <p>
       This site will provide you with several cookbooks according to your taste!
@@ -16,38 +17,38 @@
       Cookbook - drinks
     </button>
 
-    <SoupsList
-      :listOfSoups="listOfSoups"
+    <FoodList
+      :listOfFood="listOfSoups"
       v-show="showSoups"
       @deleteItem="deleteItem"
       @changeData="changeData"
     />
 
-    <SoupsList
-      :listOfSoups="listOfDishes"
+    <FoodList
+      :listOfFood="listOfDishes"
       v-show="showDishes"
       @deleteItem="deleteItem"
       @changeData="changeData"
     />
 
-    <SoupsList
-      :listOfSoups="listOfDrinks"
+    <FoodList
+      :listOfFood="listOfDrinks"
       v-show="showDrinks"
       @deleteItem="deleteItem"
       @changeData="changeData"
     />
 
-    <SoupAdd
+    <FoodAdd
       v-show="showSoups"
       @addTodo="addSoup"
       @listOfTypes="listOfTypesOfFoods"
     />
-    <SoupAdd
+    <FoodAdd
       v-show="showDishes"
       @addTodo="addSoup"
       @listOfTypes="listOfTypesOfFoods"
     />
-    <SoupAdd
+    <FoodAdd
       v-show="showDrinks"
       @addTodo="addSoup"
       @listOfTypesOfFoods="listOfTypesOfFoods"
@@ -56,14 +57,14 @@
 </template>
 
 <script>
-import SoupsList from "./components/SoupsList.vue";
-import SoupAdd from "./components/SoupAdd.vue";
+import FoodList from "./components/FoodList.vue";
+import FoodAdd from "./components/FoodAdd.vue";
 
 export default {
   name: "App",
   components: {
-    SoupsList,
-    SoupAdd,
+    FoodList,
+    FoodAdd,
   },
   data() {
     return {

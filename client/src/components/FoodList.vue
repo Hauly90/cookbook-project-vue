@@ -1,7 +1,7 @@
 <template>
-  <div class="soupsList">
+  <div class="foodList">
     <h3>Please choose your action (list, details, add)</h3>
-
+    <!-- <h2>{{ listOfFood }}</h2> -->
     <button
       class="btn btn-primary"
       v-show="!showAllRec"
@@ -31,46 +31,46 @@
         aria-expanded="false"
         v-show="!showIt"
       >
-        List of soups:
+        List of recipes:
       </button>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <div
           class="dropdown-item"
           href="#"
-          v-for="(oneSoup, index) in listOfSoups"
-          :key="oneSoup"
+          v-for="(oneFood, index) in listOfFood"
+          :key="oneFood"
         >
           <a class="dropdown-item" href="#" @click="showItem(index)">
-            {{ oneSoup.name }}
+            {{ oneFood.name }}
           </a>
         </div>
       </div>
     </div>
 
     <!-- Whole list -->
-    <div v-for="oneSoup in listOfSoups" :key="oneSoup">
-      <Soup
-        :oneSoupName="oneSoup.name"
-        :oneSoupDescription="oneSoup.description"
-        :oneSoupFinalAmount="oneSoup.finalAmount"
-        :oneSoupPrepLength="oneSoup.preparationLength"
-        :oneSoupIngredients="oneSoup.ingredients"
+    <div v-for="oneFood in listOfFood" :key="oneFood">
+      <Food
+        :oneFoodName="oneFood.name"
+        :oneFoodDescription="oneFood.description"
+        :oneFoodFinalAmount="oneFood.finalAmount"
+        :oneFoodPrepLength="oneFood.preparationLength"
+        :oneFoodIngredients="oneFood.ingredients"
         v-show="showAllRec"
       />
     </div>
 
-    <!-- One soup -->
+    <!-- One food -->
     <div>
-      <Soup
-        :oneSoupName="soupName"
-        :oneSoupDescription="soupDescription"
-        :oneSoupFinalAmount="soupFinalAmount"
-        :oneSoupPrepLength="soupPrepLength"
-        :oneSoupIngredients="soupIngredients"
-        :oneSoupIndex="soupIndex"
-        :oneSoupId="soupId"
-        :oneSoupType="soupType"
+      <Food
+        :oneFoodName="foodName"
+        :oneFoodDescription="foodDescription"
+        :oneFoodFinalAmount="foodFinalAmount"
+        :oneFoodPrepLength="foodPrepLength"
+        :oneFoodIngredients="foodIngredients"
+        :oneFoodIndex="foodIndex"
+        :oneFoodId="foodId"
+        :oneFoodType="foodType"
         :showIcon="true"
         v-show="showIt"
         @deleteItem="deleteItem"
@@ -81,29 +81,29 @@
 </template>
 
 <script>
-import Soup from "./Soup.vue";
+import Food from "./Food.vue";
 
 export default {
   components: {
-    Soup,
+    Food,
   },
   props: {
-    listOfSoups: Array,
+    listOfFood: Array,
   },
   data() {
     return {
       showAllRec: false,
       showIt: false,
 
-      soupName: "",
-      soupDescription: [],
-      soupFinalAmount: 0,
-      soupPrepLength: 0,
-      soupIngredients: [],
-      soupIndex: 1,
-      list: this.listOfSoups,
-      soupId: "",
-      soupType: "",
+      foodName: "",
+      foodDescription: [],
+      foodFinalAmount: 0,
+      foodPrepLength: 0,
+      foodIngredients: [],
+      foodIndex: 1,
+      list: this.listOfFood,
+      foodId: "",
+      foodType: "",
     };
   },
   methods: {
@@ -111,17 +111,17 @@ export default {
       this.showAllRec = !this.showAllRec;
     },
     showItem(index) {
-      // console.log(this.listOfSoups[index].name);
+      // console.log(this.listOfFood[index].name);
 
-      this.soupName = this.listOfSoups[index].name;
-      this.soupDescription = this.listOfSoups[index].description;
-      this.soupFinalAmount = this.listOfSoups[index].finalAmount;
-      this.soupPrepLength = this.listOfSoups[index].preparationLength;
-      this.soupIngredients = this.listOfSoups[index].ingredients;
+      this.foodName = this.listOfFood[index].name;
+      this.foodDescription = this.listOfFood[index].description;
+      this.foodFinalAmount = this.listOfFood[index].finalAmount;
+      this.foodPrepLength = this.listOfFood[index].preparationLength;
+      this.foodIngredients = this.listOfFood[index].ingredients;
 
-      this.soupIndex = index;
-      this.soupId = this.listOfSoups[index].id;
-      this.soupType = this.listOfSoups[index].type;
+      this.foodIndex = index;
+      this.foodId = this.listOfFood[index].id;
+      this.foodType = this.listOfFood[index].type;
 
       this.showIt = true;
     },

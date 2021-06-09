@@ -1,5 +1,5 @@
 <template>
-  <div class="addSoup">
+  <div class="addFood">
     <button v-if="!isShowed" class="btn btn-light" @click="showEditing()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
