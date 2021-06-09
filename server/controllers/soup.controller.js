@@ -190,13 +190,13 @@ export const addSoup = (req, res) => {
     if (type === "soup") {
         soupsList.push({ ...oneFood, id: uuidv4() });
         res.status(201);
-        res.send(`Soup with the name ${oneSoup.name} added to the database!`);
+        res.send(`Soup with the name ${oneFood.name} added to the database!`);
     } else if (type === "dish") {
         mainDishesList.push({ ...oneFood, id: uuidv4() });
         res.status(201);
-        res.send(`Dish with the name ${oneSoup.name} added to the database!`);
+        res.send(`Dish with the name ${oneFood.name} added to the database!`);
     }
 
-    res.send(`Soup with the name ${oneSoup.name} added to the database!`);
+    res.send(`Soup with the name ${oneFood.name} added to the database!`);
 }
 

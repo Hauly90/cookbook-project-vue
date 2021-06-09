@@ -145,7 +145,7 @@ export default {
       formIngredName3,
       foodType,
     ) {
-      fetch("http://localhost:3000/soup/addSoup/soup", {
+      fetch("http://localhost:3000/food/addSoup/soup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
