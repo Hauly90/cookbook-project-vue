@@ -1,5 +1,5 @@
 import express from 'express';
-import soupRouter from './routers/soup.routers.js';
+import foodRouter from './routers/food.routers.js';
 import cors from 'cors';
 
 const app = express();
@@ -7,7 +7,7 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use('/food/', soupRouter);
+app.use('/food/', foodRouter);
 
 
 app.listen(port, () => {

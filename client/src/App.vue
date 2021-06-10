@@ -144,7 +144,7 @@ export default {
       formIngredQuan3,
       formIngredType3,
       formIngredName3,
-      foodType,
+      foodType
     ) {
       fetch("http://localhost:3000/food/addSoup/soup", {
         method: "POST",
@@ -207,6 +207,9 @@ export default {
         fetch("http://localhost:3000/food/dish")
           .then((response) => response.json())
           .then((data) => (this.listOfDishes = data));
+        fetch("http://localhost:3000/food/drink")
+          .then((response) => response.json())
+          .then((data) => (this.listOfDrinks = data));
       }, 300);
     },
   },
