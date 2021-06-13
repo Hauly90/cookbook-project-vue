@@ -199,7 +199,7 @@ export default {
 
       if (this.formName !== "") {
         this.$emit(
-          "addTodo",
+          "addFood",
           this.formName,
           this.formDesc,
           parseInt(this.formFinAmo),

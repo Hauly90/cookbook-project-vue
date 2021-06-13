@@ -40,17 +40,17 @@
 
     <FoodAdd
       v-show="showSoups"
-      @addTodo="addSoup"
+      @addFood="addFood"
       @listOfTypes="listOfTypesOfFoods"
     />
     <FoodAdd
       v-show="showDishes"
-      @addTodo="addSoup"
+      @addFood="addFood"
       @listOfTypes="listOfTypesOfFoods"
     />
     <FoodAdd
       v-show="showDrinks"
-      @addTodo="addSoup"
+      @addFood="addFood"
       @listOfTypesOfFoods="listOfTypesOfFoods"
     />
   </div>
@@ -130,7 +130,7 @@ export default {
       // this.listOfSoups[index].finalAmount = formFinAmo;
       // this.listOfSoups[index].preparationLength = formPrepLeng;
     },
-    addSoup(
+    addFood(
       formName,
       formDesc,
       formFinAmo,
